@@ -50,8 +50,10 @@ class ProductService
     private function modifyProduct(Request $request, Product $product): Product
     {
         $data = json_decode($request->getContent(), true);;
-        $product->setTitle($data['title']);
         $product->setActive(true);
+        $product->setTitle($data['title']);
+        $product->setPrice($data['price']);
+        $product->setDescription($data['description']);
         $this->productRepository->save($product, true);
         return $product;
     }
