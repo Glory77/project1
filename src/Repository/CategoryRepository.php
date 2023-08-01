@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,5 +20,15 @@ class CategoryRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Category::class);
+    }
+
+    public function findAllSortedByTitle(): array
+    {
+        return $this->findBy([], ['title' => Criteria::ASC]);
+    }
+
+    public function getById(int $id): ?Category
+    {
+        return $this->find($id);
     }
 }
