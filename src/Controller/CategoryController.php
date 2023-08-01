@@ -24,25 +24,25 @@ class CategoryController extends AbstractController
         return $this->json($this->categoryService->getCategories());
     }
 
-    #[Route('/categories/{id}', name: 'category', methods: ['GET'])]
+    #[Route('/categories/{id}', name: 'category_details', methods: ['GET'])]
     public function category(int $id): Response
     {
         return $this->json($this->categoryService->getCategoryById($id));
     }
 
-    #[Route('/categories', name: 'create_category', methods: ['POST'])]
+    #[Route('/categories', name: 'category_create', methods: ['POST'])]
     public function create(Request $request): Response
     {
         return $this->json($this->categoryService->createCategory($request));
     }
 
-    #[Route('/categories/{id}', name: 'update_category', methods: ['POST'])]
+    #[Route('/categories/{id}', name: 'category_update', methods: ['POST'])]
     public function update(int $id, Request $request): Response
     {
         return $this->json($this->categoryService->updateCategory($id, $request));
     }
 
-    #[Route('/categories/{id}', name: 'delete_category', methods: ['DELETE'])]
+    #[Route('/categories/{id}', name: 'category_delete', methods: ['DELETE'])]
     public function delete(int $id): Response
     {
         $this->categoryService->deleteCategory($id);
